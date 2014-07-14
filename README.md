@@ -1,2 +1,2 @@
-alurinium-image-processing
-==========================
+Image Processing for Django
+===========================
