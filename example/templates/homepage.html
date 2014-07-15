@@ -1,10 +1,49 @@
+{% load image_processing %}
+
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-!!!!!
-</body>
+    <html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <ul>
+            {% with "/home/alurin/Dropbox/Photos/dragons/War_of_Dragons_by_kerembeyit.jpg" as file %}
+                {% process_image file size="100x100" as thumb %}
+                {% if thumb %}
+                    <li>
+                        <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/>
+                    </li>
+                {% endif %}
+
+                {% process_image file size="100x100" grayscale=True as thumb %}
+                {% if thumb %}
+                    <li>
+                        <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/>
+                    </li>
+                {% endif %}
+
+                {% process_image file size="100x100" grayscale=True as thumb %}
+                {% if thumb %}
+                    <li>
+                        <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/>
+                    </li>
+                {% endif %}
+
+                {% process_image file size="100" as thumb %}
+                {% if thumb %}
+                    <li>
+                        <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/>
+                    </li>
+                {% endif %}
+
+                {% process_image file size="x100" as thumb %}
+                    {% if thumb %}
+                        <li>
+                            <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/>
+                        </li>
+                    {% endif %}
+            {% endwith %}
+        </ul>
+    </body>
 </html>

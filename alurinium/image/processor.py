@@ -1,4 +1,5 @@
 import os
+import errno
 from PIL import Image
 from alurinium.image.filters.base import ImageOptions
 from alurinium.image.filters.grayscale import GrayscaleFilter
@@ -9,6 +10,16 @@ BUILTIN_FILTERS = (
     ResizeFilter,
     GrayscaleFilter,
 )
+
+
+def mkdir(path):
+    try:
+        os.makedirs(path)
+    except OSError as exc:      # Python >2.5
+        if exc.errno == errno.EEXIST and os.path.isdir(path):
+            pass
+        else:
+            raise
 
 
 class ImageProcessor(object):
@@ -62,5 +73,6 @@ class ImageProcessor(object):
         output_filename += output_extension
 
         # save result image
+        mkdir(os.path.dirname(output_filename))
         result.save(output_filename, mode=output_mode)
-        return result
+        return output_filename, result

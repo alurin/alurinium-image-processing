@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='alurinium-image-processing',
-    version='0.1.0',
+    version='0.1.0-dev',
     author='Vasiliy Sheredeko',
     author_email='piphon@gmail.com',
     packages=['alurinium'],
